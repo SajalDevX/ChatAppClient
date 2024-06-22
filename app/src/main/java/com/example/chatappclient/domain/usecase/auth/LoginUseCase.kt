@@ -6,7 +6,7 @@ import com.example.chatappclient.domain.model.auth.LoginResponse
 import com.example.chatappclient.domain.repository.AuthRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import me.inassar.demos.socialapp.data.remote.dto.login.request.LoginRequestDto
+import com.example.chatappclient.data.remote.dto.auth.login.request.LoginRequestDto
 
 class LoginUseCase(private val repository: AuthRepository) {
 

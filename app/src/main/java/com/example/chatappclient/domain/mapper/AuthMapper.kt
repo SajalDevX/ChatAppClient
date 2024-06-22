@@ -10,7 +10,7 @@ fun LoginResponseDto.toLoginResponse() = LoginResponse(
     token = data?.token,
     username = data?.user?.username,
     email = data?.user?.email,
-    avatar = data?.user?.email,
+    avatar = data?.user?.avatar,
     errorMessage = error?.message
 )
 

@@ -8,26 +8,24 @@ import com.example.chatappclient.data.remote.dto.auth.signup.response.SignupResp
 import com.example.chatappclient.domain.repository.AuthRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import me.inassar.demos.socialapp.data.remote.dto.login.request.LoginRequestDto
+import com.example.chatappclient.data.remote.dto.auth.login.request.LoginRequestDto
 
-class AuthRepositoryImpl(
-    private val datasource:AuthDataSource
-) : AuthRepository {
-    override suspend fun signup(requestDto: SignupRequestDto): Flow<ResponseResource<SignupResponseDto>> {
-        return flow {
-            when(val response = datasource.signup(requestDto) ){
+class AuthRepositoryImpl(private val remote: AuthDataSource) : AuthRepository {
+
+    override suspend fun signup(requestDto: SignupRequestDto): Flow<ResponseResource<SignupResponseDto>> =
+        flow {
+            when (val response = remote.signup(requestDto)) {
                 is ResponseResource.Error -> emit(ResponseResource.error(response.errorMessage))
                 is ResponseResource.Success -> emit(ResponseResource.success(response.data))
             }
         }
-    }
 
-    override suspend fun login(requestDto: LoginRequestDto): Flow<ResponseResource<LoginResponseDto>> {
-        return flow {
-            when(val response = datasource.login(requestDto) ){
+    override suspend fun login(requestDto: LoginRequestDto): Flow<ResponseResource<LoginResponseDto>> =
+        flow {
+            when (val response = remote.login(requestDto)) {
                 is ResponseResource.Error -> emit(ResponseResource.error(response.errorMessage))
                 is ResponseResource.Success -> emit(ResponseResource.success(response.data))
             }
         }
-    }
+
 }

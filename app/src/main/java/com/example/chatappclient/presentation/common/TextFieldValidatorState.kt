@@ -1,3 +1,5 @@
+@file:JvmName("TextFieldStateKt")
+
 package com.example.chatappclient.presentation.common
 
 import android.util.Patterns
@@ -28,4 +30,3 @@ private fun isUsernameValid(username: String): Boolean =
 
 private fun usernameErrorMessage(username: String) =
     if (username.isEmpty()) "Username field is required." else "Username should be at least 3 characters."
-

@@ -1,26 +1,51 @@
 package com.example.chatappclient.presentation.common
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
-import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
+
+
+@Composable
+fun AuthHeader(title: String, painterResource: Int) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth().clip(
+                shape = Shapes.Full.copy(
+                    topEnd = CornerSize(0.dp),
+                    topStart = CornerSize(0.dp),
+                    bottomStart = CornerSize(0.dp),
+                    bottomEnd = CornerSize(0.dp)
+                )
+            )
+            .background(MaterialTheme.colorScheme.primaryContainer)
+    ) {
+        Image(
+            modifier = Modifier
+                .height(200.dp)
+                .fillMaxWidth(),
+            painter = painterResource(id = painterResource),
+            contentDescription = null
+        )
+        Text(
+            modifier = Modifier.padding(8.dp),
+            text = title,
+            color = MaterialTheme.colorScheme.onPrimaryContainer,
+            style = MaterialTheme.typography.headlineLarge
+        )
+    }
+}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

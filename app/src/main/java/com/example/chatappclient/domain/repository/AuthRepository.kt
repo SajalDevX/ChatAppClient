@@ -5,7 +5,7 @@ import com.example.chatappclient.data.remote.dto.auth.login.response.LoginRespon
 import com.example.chatappclient.data.remote.dto.auth.signup.request.SignupRequestDto
 import com.example.chatappclient.data.remote.dto.auth.signup.response.SignupResponseDto
 import kotlinx.coroutines.flow.Flow
-import me.inassar.demos.socialapp.data.remote.dto.login.request.LoginRequestDto
+import com.example.chatappclient.data.remote.dto.auth.login.request.LoginRequestDto
 
 interface AuthRepository {
     suspend fun signup(requestDto: SignupRequestDto): Flow<ResponseResource<SignupResponseDto>>

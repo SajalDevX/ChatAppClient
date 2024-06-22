@@ -1,7 +1,6 @@
 package com.example.chatappclient.common.time
 
 import java.util.*
-
 private const val SECOND_MILLIS = 1000
 private const val MINUTE_MILLIS = 60 * SECOND_MILLIS
 private const val HOUR_MILLIS = 60 * MINUTE_MILLIS
@@ -12,16 +11,18 @@ private fun currentDate(): Date {
     return calendar.time
 }
 
-fun getTimeAgo(timeStamp: Long): String {
-    val date = Date(timeStamp)
+fun getTimeAgo(timestamp: Long): String {
+    val date = Date(timestamp)
     var time = date.time
     if (time < 1000000000000L) {
         time *= 1000
     }
+
     val now = currentDate().time
     if (time > now || time <= 0) {
         return "in the future"
     }
+
     val diff = now - time
     return when {
         diff < MINUTE_MILLIS -> "Seconds ago"

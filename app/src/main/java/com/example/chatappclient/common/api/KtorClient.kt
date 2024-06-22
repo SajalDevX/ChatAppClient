@@ -29,9 +29,11 @@ val ktorHttpClient = HttpClient(CIO) {
             ignoreUnknownKeys = true
         })
     }
+
     engine {
         requestTimeout = TIME_OUT
     }
+
     install(Logging) {
         logger = object : Logger {
             override fun log(message: String) {
@@ -43,7 +45,7 @@ val ktorHttpClient = HttpClient(CIO) {
 
     install(ResponseObserver) {
         onResponse { response ->
-            Log.d("Http status", "${response.status.value}")
+            Log.d("Http status:", "${response.status.value}")
         }
     }
 

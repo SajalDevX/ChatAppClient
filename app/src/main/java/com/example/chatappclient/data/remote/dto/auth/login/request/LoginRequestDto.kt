@@ -1,4 +1,4 @@
-package me.inassar.demos.socialapp.data.remote.dto.login.request
+package com.example.chatappclient.data.remote.dto.auth.login.request
 
 @kotlinx.serialization.Serializable
 data class LoginRequestDto(

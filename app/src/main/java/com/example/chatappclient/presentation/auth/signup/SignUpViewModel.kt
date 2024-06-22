@@ -51,6 +51,30 @@ class SignupViewModel(
         _confirmPasswordState.text = confirmPassword
     }
 
+    fun performSignup() {
+        if (validateInputs())
+            viewModelScope.launch {
+                _signupState.value = SignupState(isLoading = true)
+                val request = SignupRequestDto(
+                    username = usernameState.text,
+                    email = emailState.text,
+                    password = passwordState.text
+                )
+
+                useCase(request).collect {
+                    when (it) {
+                        is ResponseResource.Error -> _signupState.value =
+                            SignupState(error = it.errorMessage.errorMessage.orEmpty())
+                        is ResponseResource.Success -> {
+                            sessionPrefs.saveUser(it.data.toUser().copy(isLoggedIn = true))
+                            _signupState.value =
+                                SignupState(data = it.data)
+                        }
+                    }
+                }
+            }
+    }
+
     private fun validateInputs(): Boolean {
         if (usernameState.text.isEmpty()) {
             _usernameState.validate()
@@ -75,29 +99,4 @@ class SignupViewModel(
         return true
     }
 
-    fun signup() {
-        if (validateInputs()) {
-            viewModelScope.launch {
-                _signupState.value = SignupState(isLoading = true)
-                val request = SignupRequestDto(
-                    username = usernameState.text,
-                    email = emailState.text,
-                    password = passwordState.text
-                )
-
-                useCase(request).collect {
-                    when (it) {
-                        is ResponseResource.Error -> _signupState.value =
-                            SignupState(error = it.errorMessage.errorMessage.orEmpty())
-
-                        is ResponseResource.Success -> {
-                            sessionPrefs.saveUser(it.data.toUser().copy(isLoggedIn = true))
-                            _signupState.value =
-                                SignupState(data = it.data)
-                        }
-                    }
-                }
-            }
-        }
-    }
 }
