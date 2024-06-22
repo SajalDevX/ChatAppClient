@@ -1,7 +1,9 @@
 package com.example.chatappclient.di
 
 import com.example.chatappclient.data.repository.AuthRepositoryImpl
+import com.example.chatappclient.data.repository.ChatRepositoryImpl
 import com.example.chatappclient.domain.repository.AuthRepository
+import com.example.chatappclient.domain.repository.ChatRepository
 import org.koin.dsl.module
 
 /**
@@ -12,5 +14,5 @@ import org.koin.dsl.module
  */
 val repositoryModule = module {
     single<AuthRepository> { AuthRepositoryImpl(get()) }
-//    single<ChatRepository> { ChatRepositoryImpl(get(), get()) }
+    single<ChatRepository> { ChatRepositoryImpl(get(), get()) }
 }

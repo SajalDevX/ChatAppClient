@@ -2,6 +2,8 @@ package com.example.chatappclient.di
 
 import com.example.chatappclient.domain.usecase.auth.LoginUseCase
 import com.example.chatappclient.domain.usecase.auth.SignupUseCase
+import com.example.chatappclient.domain.usecase.chat.FriendListUseCase
+import com.example.chatappclient.domain.usecase.chat.GetRoomHistoryUseCase
 import org.koin.dsl.module
 
 /**
@@ -13,6 +15,6 @@ import org.koin.dsl.module
 val useCaseModule = module {
     single { LoginUseCase(get()) }
     single { SignupUseCase(get()) }
-//    single { FriendListUseCase(get()) }
-//    single { GetRoomHistoryUseCase(get()) }
+    single { FriendListUseCase(get()) }
+    single { GetRoomHistoryUseCase(get()) }
 }

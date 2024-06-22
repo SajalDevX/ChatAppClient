@@ -2,6 +2,8 @@ package com.example.chatappclient.di
 
 import com.example.chatappclient.data.remote.datasource.auth.AuthDataSource
 import com.example.chatappclient.data.remote.datasource.auth.AuthDataSourceImpl
+import com.example.chatappclient.data.remote.datasource.chat.ChatDataSource
+import com.example.chatappclient.data.remote.datasource.chat.ChatDataSourceImpl
 import org.koin.dsl.module
 
 /**
@@ -12,5 +14,5 @@ import org.koin.dsl.module
  */
 val networkModule = module {
     single<AuthDataSource> { AuthDataSourceImpl(get()) }
-//    single<ChatRemote> { ChatRemoteImpl(get()) }
+    single<ChatDataSource> { ChatDataSourceImpl(get()) }
 }
