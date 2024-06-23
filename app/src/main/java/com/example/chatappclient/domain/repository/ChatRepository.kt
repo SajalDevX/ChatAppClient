@@ -9,7 +9,6 @@ import kotlinx.coroutines.flow.Flow
 interface ChatRepository {
     suspend fun getFriendList(): Flow<ResponseResource<FriendListResponseDto>>
     suspend fun getRoomHistory(receiver: String): Flow<ResponseResource<ChatRoomResponseDto>>
-
     suspend fun connectToSocket(sender: String, receiver: String): ResponseResource<String>
     suspend fun sendMessage(message: String)
     fun receiveMessage(): Flow<MessageResponseDto>
